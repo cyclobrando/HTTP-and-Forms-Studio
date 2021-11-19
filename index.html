@@ -5,15 +5,40 @@
 	<script>
 		// TODO: create a handler
     window.addEventListener("load", function(){
-        // TODO: register the handler
+		let actions = {
+			"google": "https://www.google.com/search",
+			"duckDuckGo": "https://duckduckgo.com/",
+			"bing": "https://www.bing.com/search",
+			"ask": "https://www.ask.com/web"
+		}
+		let form = document.querySelector("form");
+		form.addEventListener("submit", function(event){
+			let userEngineInput = document.querySelector("[name=engine]:checked");
+			if (userEngineInput.value === "google"){
+				form.setAttribute("action", actions.google);
+			} else if (userEngineInput.value === "duckDuckGo"){
+				form.setAttribute("action", actions.duckDuckGo);
+			} else if (userEngineInput.value === "bing"){
+				form.setAttribute("action", actions.bing);
+			} else if (userEngineInput.value === "ask"){
+				form.setAttribute("action", actions.ask);
+			}			
+		})
     });
 	</script>
 </head>
 
 <body>
 
-	<form id="searchForm">
-    <!-- TODO: add form elements -->
+	<form id="searchForm" action="" method="get">
+		<label><input type="text" name="q"/></label>
+
+		<label>Google <input type="radio" name="engine" value="google"/></label>
+    	<label>DuckDuckGo <input type="radio" name="engine" value="duckDuckGo"/></label>
+    	<label>Bing <input type="radio" name="engine" value="bing"/></label>
+		<label>Ask <input type="radio" name="engine" value="ask"/></label>
+
+		<button id="submit">Go!</button>
 	</form>
 
 </body>
